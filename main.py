@@ -1,13 +1,18 @@
 from spy_details import spy, Spy, ChatMessage, friends
 from steganography.steganography import Steganography
+import colorama
+from termcolor import *
+
 
 STATUS_MESSAGES = ['My name is Bond, James Bond', 'Shaken, not stirred.', 'Keeping the British end up, Sir']
 
 
 print "Hey Let\'s get started"
+colorama.init()
 
 question = "Do you want to continue as " + spy.salutation + " " + spy.name + " (Y/N)? "
 existing = raw_input(question)
+
 
 
 def add_status():
@@ -154,13 +159,17 @@ def read_chat_history():
 
     read_for = select_a_friend()
 
-    print '\n6'
+    print '\n'
 
     for chat in friends[read_for].chats:
         if chat.sent_by_me:
-            print '[%s] %s: %s' % (chat.time.strftime("%d %B %Y"), 'You said:', chat.message)
+            cprint(chat.time.strftime("%d %B %Y"),'blue')
+            cprint('You said:','red')
+            print chat.message
         else:
-            print '[%s] %s said: %s' % (chat.time.strftime("%d %B %Y"), friends[read_for].name, chat.message)
+            cprint (chat.time.strftime("%d %B %Y"),'blue')
+            cprint(friends[read_for].name + 'said:','red')
+            print chat.message
 
 
 def start_chat(spy):
@@ -199,8 +208,13 @@ def start_chat(spy):
     else:
         print 'Sorry you are not of the correct age to be a spy'
 
-if existing == "Y":
-    start_chat(spy)
+if existing.upper() == "Y":
+    password=raw_input('Enter your password')
+    if password == 'admin':
+        print 'welcome' + spy.name
+        start_chat(spy)
+    else:
+        print 'Incorrect password!'
 else:
 
     spy = Spy('','',0,0.0)
