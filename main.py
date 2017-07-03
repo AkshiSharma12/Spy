@@ -2,9 +2,11 @@ from spy_details import spy, Spy, ChatMessage, friends
 from steganography.steganography import Steganography
 import colorama
 from termcolor import *
+from Tkinter import *
 
 
-STATUS_MESSAGES = ['My name is Bond, James Bond', 'Shaken, not stirred.', 'Keeping the British end up, Sir']
+
+STATUS_MESSAGES = ['Hey there!', 'Busy.DND!', 'At Work.']
 
 
 print "Hey Let\'s get started"
@@ -209,7 +211,7 @@ def start_chat(spy):
         print 'Sorry you are not of the correct age to be a spy'
 
 if existing.upper() == "Y":
-    password=raw_input('Enter your password')
+
     if password == 'admin':
         print 'welcome' + spy.name
         start_chat(spy)
