@@ -211,7 +211,7 @@ def start_chat(spy):
         print 'Sorry you are not of the correct age to be a spy'
 
 if existing.upper() == "Y":
-
+    password=raw_input("Enter password: ")
     if password == 'admin':
         print 'welcome' + spy.name
         start_chat(spy)
